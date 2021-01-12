@@ -13,6 +13,8 @@ namespace Labb3VG.MyMonster
         private int gold;
         private int achieveExperience;
         private int lvl;
+        private string race;
+        private string sound;
         public Random rnd = new Random();
 
 
@@ -23,8 +25,8 @@ namespace Labb3VG.MyMonster
         public int Gold { get => gold; set => gold = value; }
         public int AchieveExperience { get => achieveExperience; set => achieveExperience = value; }
         public int Lvl { get => lvl; set => lvl = value; }
-
-
+        public string Race { get => race; set => race = value; }
+        public string Sound { get => sound; set => sound = value; }
 
         virtual public int Attack()
         {
@@ -61,9 +63,14 @@ namespace Labb3VG.MyMonster
             
         }
 
+        virtual public string Greetings()
+        {
+            return $" Ooohh. You run into {Name}, a {Race} (lvl {Lvl}).{Sound}";
+        }
+
         public override string ToString()
         {
-            return "Name: "+ Name +  "\nHP: " + HP + "\nLvl: " + Lvl ;
+            return "Name: "+ Name +  "\nHP: " + HP + "\nLvl: " + Lvl + "\nRace: " + Race; ;
         }
     }
 

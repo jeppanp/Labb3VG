@@ -7,11 +7,11 @@ namespace Labb3VG.MyMonster.Fire
 {
     class Dragon : FireMonster
     {
-        private string race; 
+     
         
         public Dragon()
         {
-            List<string> dragonNames = new List<string>() { "Onyxia", "Katla", "The Red Nightmare", "Saphira", "Smaug", "Mushu"};
+            List<string> dragonNames = new List<string>() { "Onyxia", "Katla", "Twiligt Eye", "Saphira", "Smaug", "Mushu"};
             int nr = rnd.Next(6);
             Name = dragonNames[nr];
             Lvl = rnd.Next(1, 11);
@@ -20,14 +20,12 @@ namespace Labb3VG.MyMonster.Fire
             AchieveExperience = 50 + (Lvl * 2);
             Strength = Lvl;
             Race = "Dragon";
+            Sound = "You hear the sound of FCHHHHHHHH";
 
         }
 
-        public string Race { get => race; set => race = value; }
+      
 
-        public override string ToString()
-        {
-            return base.ToString() + "\nRace: " + Race;
-        }
+
     }
 }

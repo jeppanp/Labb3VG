@@ -10,13 +10,14 @@ namespace Labb3VG.MyMonster.Fire
         {
             int attack = 0;
 
-            int nr = rnd.Next(1, 11);
+            int nr = rnd.Next(1, 11);                     // random 10% to create a miss. 
             if (nr != 1) 
             {
-                nr = rnd.Next(1, 4);
+                nr = rnd.Next(1, 4);                      // otherwise 33% of which hit the monster gets in. 
             }
             else
-            { nr = 4;
+            { 
+                nr = 4;
             }
 
             switch (nr)
@@ -29,7 +30,7 @@ namespace Labb3VG.MyMonster.Fire
 
                 case 2:
                     attack = Strength + 2;
-                    Console.WriteLine($"The {Name} hits you with a fireflame, dealing {attack} damage.");
+                    Console.WriteLine($"The {Name} hits you with a great fire ball , dealing {attack} damage.");
                     break;
 
                 case 3:
@@ -38,7 +39,7 @@ namespace Labb3VG.MyMonster.Fire
                     break;
 
                 case 4:
-                    Console.WriteLine("Nice j! You managed to avoid the burning fire!");
+                    Console.WriteLine("Nice maneuver! You managed to avoid the burning fire!");
                     attack = 0;
                     break;
             }
