@@ -31,8 +31,9 @@ namespace Labb3VG.MyMonster
         public string Sound { get => sound; set => sound = value; }
         public string Element { get => element; set => element = value; }
 
-        virtual public int Attack()
+        virtual public int Attack(Player player)
         {
+
             int attack=0;
            
             switch (rnd.Next(1, 4))
@@ -53,18 +54,7 @@ namespace Labb3VG.MyMonster
             return attack;
         }
 
-        virtual public bool Defense()
-        {
-            bool defense = false;
 
-            int lucky = rnd.Next(1, 101);
-            if (lucky<=5)
-            {
-                defense = true;
-            }
-            return defense;
-            
-        }
 
         virtual public string Greetings()
         {

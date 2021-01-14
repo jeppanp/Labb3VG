@@ -37,12 +37,18 @@ namespace Labb3VG
                 switch (userAnswer)
                 {
                     case 1:
-                        if (player.Gold >= 100)
+                        if (player.Gold >= 100 && player.AtkAmulet == false)
                         {
                             Console.WriteLine("You bought an amulet. You can feel its power.");
                             player.Strength += 5;
+                            player.AtkAmulet = true;
                             player.Gold -= 150;
 
+                        }
+                        else if (player.AtkAmulet)
+                        {
+                            Console.WriteLine("Your idiot, wasting money on something you already got. Suit your self consumption freak ");
+                            player.Gold -= 150;
                         }
                         else
                         {
@@ -52,12 +58,19 @@ namespace Labb3VG
                         break;
 
                     case 2:
-                        if (player.Gold >= 150)
+                        if (player.Gold >= 150 && player.DefAmulet == false)
                         {
                             Console.WriteLine("You bought an amulet. You can feel its power.");
                             player.Toughness += 2;
+                            player.DefAmulet = true;
                             player.Gold -= 150;
 
+                        }
+
+                        else if (player.AtkAmulet)
+                        {
+                            Console.WriteLine("Your idiot, wasting money on something you already got. Suit your self consumption freak ");
+                            player.Gold -= 150;
                         }
                         else
                         {
@@ -70,7 +83,7 @@ namespace Labb3VG
                         {
                             Console.WriteLine("You bought a Fire Sword. You can hear its sound \"FCCSHHHH\" while you swing it through the air.");
                             player.FireWeapon = true;
-                            player.Gold -= 150;
+                            player.Gold -= 100;
 
                         }
                         else
@@ -80,11 +93,11 @@ namespace Labb3VG
                         }
                         break;
                     case 4:
-                        if (player.Gold >= 150)
+                        if (player.Gold >= 100)
                         {
                             Console.WriteLine("You bought an Electric Rod. The flashes surronds it and fire lightnings");
                             player.GrassWeapon = true;
-                            player.Gold -= 150;
+                            player.Gold -= 100;
 
                         }
                         else
@@ -94,11 +107,11 @@ namespace Labb3VG
                         }
                         break;
                     case 5:
-                        if (player.Gold >= 150)
+                        if (player.Gold >= 100)
                         {
                             Console.WriteLine("You bought a Trident. You are now the king of the ocean!");
                             player.WaterWeapon = true;
-                            player.Gold -= 150;
+                            player.Gold -= 100;
 
                         }
                         else

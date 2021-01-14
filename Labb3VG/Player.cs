@@ -23,10 +23,12 @@ namespace Labb3VG
         private bool fireWeapon;
         private bool grassWeapon;
         private bool waterWeapon;
+        private bool defAmulet;
+        private bool atkAmulet;
 
 
         public Random rnd = new Random();
-       
+
 
 
         public Player()
@@ -39,7 +41,7 @@ namespace Labb3VG
             experience = 0;
             Strength = lvl;
             Toughness = 0;
-           
+
         }
 
 
@@ -57,21 +59,23 @@ namespace Labb3VG
         public bool FireWeapon { get => fireWeapon; set => fireWeapon = value; }
         public bool GrassWeapon { get => grassWeapon; set => grassWeapon = value; }
         public bool WaterWeapon { get => waterWeapon; set => waterWeapon = value; }
+        public bool DefAmulet { get => defAmulet; set => defAmulet = value; }
+        public bool AtkAmulet { get => atkAmulet; set => atkAmulet = value; }
 
         public int Attack(Monster monster, Player player)
         {
             int attack = 0;
 
-            if (monster.Element== "water" && player.grassWeapon || monster.Element == "fire" && player.waterWeapon || monster.Element == "grass" && fireWeapon) 
-            { 
-                attack = Strikes(8); 
+            if (monster.Element == "water" && player.grassWeapon || monster.Element == "fire" && player.waterWeapon || monster.Element == "grass" && fireWeapon)
+            {
+                attack = Strikes(8);
             }
 
             else
-            { 
+            {
                 attack = Strikes(0);
             }
-            
+
             return attack;
         }
 
@@ -122,17 +126,38 @@ namespace Labb3VG
 
         public void LvlUp()
         {
-            
-                Lvl++;
-                Experience = Experience - (int)LvlBar;
-                LvlBar = Math.Round(LvlBar * 1.25);
-                HpBar = Math.Round(HpBar * 1.15);
-                Strength++;
 
+            Lvl++;
+            Experience = Experience - (int)LvlBar;
+            LvlBar = Math.Round(LvlBar * 1.25);
+            HpBar = Math.Round(HpBar * 1.15);
+            Strength++;
+
+            hpCurrently = HpBar;
+            if (Lvl < 10)
+            {
+                Console.WriteLine($"Congratulations! You leveled up! \nYou are now level {Lvl}, and you have {Experience} experience and {HpCurrently} hp and {gold} gold");
+            }
+            else
+            {
+                Console.WriteLine("Amazing! You reached lvl 10 and killed all the monsters on Hisingen.  AbuHassan can now relax and focus on his buisness again. ");
+                lvl = 1;
+                gold = 0;
+                HpBar = 300;
                 hpCurrently = HpBar;
-
-            Console.WriteLine($"Congratulations! You leveled up! \nYou are now level {Lvl}, and you have {Experience} experience and {HpCurrently} hp and {gold} gold"); 
-      
+                lvlBar = 100;
+                experience = 0;
+                Strength = lvl;
+                Toughness = 0;
+                AtkAmulet = false;
+                DefAmulet = false;
+                FireWeapon = false;
+                WaterWeapon = false;
+                GrassWeapon = false;
+                Console.WriteLine("[Press enter to restart the game]");
+                Console.ReadKey();
+                GameLogic.Start();
+            }
 
         }
 
