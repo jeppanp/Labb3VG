@@ -13,13 +13,14 @@ namespace Labb3VG.MyMonster.Grass
             Name = waspNames[nr];
             Lvl = rnd.Next(1, 11);
             HP = 50 + (Lvl * 3);
-            Gold = 10 + (Lvl * 3);
-            AchieveExperience = 50 + (Lvl * 2);
+            DropGold = 10 + (Lvl * 3);
+            Experience = 50 + (Lvl * 2);
             Strength = Lvl;
             Race = "Wasp";
             Sound = "You can hear the sound when he fly, \"Bssssss\"";
             SpecialAttack = "Annoying Sound";
             SpecialAttack2 = "Posion stinger";
+            Element = "grass";
 
         }
     }

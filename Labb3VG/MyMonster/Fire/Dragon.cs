@@ -16,11 +16,12 @@ namespace Labb3VG.MyMonster.Fire
             Name = dragonNames[nr];
             Lvl = rnd.Next(1, 11);
             HP = 50 + (Lvl * 3);
-            Gold = 10 + (Lvl * 3);
-            AchieveExperience = 50 + (Lvl * 2);
+            DropGold = 10 + (Lvl * 3);
+            Experience = 50 + (Lvl * 2);
             Strength = Lvl;
             Race = "Dragon";
             Sound = "You hear the sound of FCHHHHHHHH";
+            Element = "fire";
 
         }
 

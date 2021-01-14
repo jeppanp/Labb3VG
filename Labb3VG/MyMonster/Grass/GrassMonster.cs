@@ -14,6 +14,7 @@ namespace Labb3VG.MyMonster.Grass
         public string NormalAttack { get => "Lice Attack"; set => normalAttack = value; }
         public string SpecialAttack2 { get => specialAttack2; set => specialAttack2 = value; }
 
+ 
         public override int Attack()
         {
             int attack = 0;

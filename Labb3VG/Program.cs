@@ -5,6 +5,7 @@ using Labb3VG.MyMonster;
 using Labb3VG.MyMonster.Fire;
 using Labb3VG.MyMonster.Grass;
 using Labb3VG.MyMonster.Water;
+using Microsoft.VisualBasic;
 
 namespace Labb3VG
 {
@@ -31,14 +32,16 @@ namespace Labb3VG
 
         private static void Start()
         {
-            //Console.WriteLine("**********************");
-            //Console.WriteLine("*Welcome to the Game!*");
-            //Console.WriteLine("**********************");
-            //Console.Write("Enter your namne: ");
-            //player.Name = Console.ReadLine();
+            Console.WriteLine("**********************");
+            Console.WriteLine("*Welcome to the Game!*");
+            Console.WriteLine("**********************");
+            Console.Write("Enter your namne: ");
+            player.Name = Console.ReadLine();
 
-            player.Name = "jesper";
 
+            player.HpCurrently = 260;
+            player.Gold = 300;
+  
             
             Meny();
         }
@@ -66,6 +69,7 @@ namespace Labb3VG
                         break;
 
                     case 3:
+                        Shop.ShopMenu(player);
                         break;
 
                     case 4:
@@ -77,34 +81,104 @@ namespace Labb3VG
             }
         }
 
-     
+
+
         private static void GoAdventuring()
         {
-                                    //TODO: 10 procent, ingen träff alls
-            switch (rnd.Next(1, 4))
+            if (IsPlayerAlive())
             {
-                case 1:                    
-                    monsterToFight = DecideLVLMonster(grassMonsters);
+                int adventure = rnd.Next(1,101);   
+                if(adventure>10 && adventure<96) 
+                {                                        
 
-                    while (monsterToFight.HP >= 1 && player.HpCurrently >= 1)
-                    {
-                        monsterToFight.HP -= player.Attack();
-                        player.HpCurrently -= monsterToFight.Attack();
-                        Console.WriteLine($"{player.Name}: {player.HpCurrently}");
-                        Console.WriteLine($"{monsterToFight.Name}: {monsterToFight.HP}");   // Lägg in så att inte -hp skrivs ut. 0 är min
-                        Console.WriteLine("[Press enter to continue]");
-                        Console.ReadKey();
-                    }                                                   // TODO: Börja koda fighten! och bryt sedan ut. 
-
-                    break;
-                case 2:
-                    monsterToFight = DecideLVLMonster(fireMonsters);                    
-                    break;
-                case 3:
-                    monsterToFight = DecideLVLMonster(waterMonsters);     
-                    break;
-
+                switch (rnd.Next(1, 4))        // slumpar fram vilken typ av monster. gräs, eld eller vatten
+                {
+                    case 1:
+                        monsterToFight = DecideLVLMonster(grassMonsters);
+                        Fight(monsterToFight);
+                        break;
+                    case 2:
+                        monsterToFight = DecideLVLMonster(fireMonsters);
+                        Fight(monsterToFight);
+                        break;
+                    case 3:
+                        monsterToFight = DecideLVLMonster(waterMonsters);
+                        Fight(monsterToFight);
+                        break;
+                }
+                }
+                else if (adventure>95)
+                {
+                    Console.WriteLine("wow, you find a hidden tressure. Looted 50 gold");
+                    player.Gold += 50;
+                }
+                else
+                {
+                    Console.WriteLine("You see nothing but sawying grass all around you");
+                }
             }
+            else
+            {
+                Meny();
+            }
+        }
+
+        private static void Fight(Monster monsterToFight)
+        {
+            
+            do
+            {
+                
+                monsterToFight.HP -= player.Attack(monsterToFight, player);            //spelare attackerar först 
+                if (monsterToFight.HP > 0)                         // om monster har hp så får den slå
+                {
+                   
+                    player.HpCurrently -= monsterToFight.Attack();
+                }
+                else if (monsterToFight.HP <= 0)                   // om den inte har hp, innebär de att spelaren dödade den och fighten är över. 
+                {                                                   
+                    Console.WriteLine($"And with that strike you killed the monster! Gaining {monsterToFight.Experience} experience and looted {monsterToFight.DropGold} gold");
+
+                    player.Gold += monsterToFight.DropGold;
+                    player.Experience += monsterToFight.Experience;
+
+                    if (player.Experience >= player.LvlBar)
+                    { 
+                        player.LvlUp();
+                    }
+
+                    Console.WriteLine("[Press enter to go back to menu]");
+                    Console.ReadKey();
+                    break;
+                }
+                if (player.HpCurrently <= 0)           // bestämm om de ska ske något när en dör. tappa guld? avbryta spelet? healing möjlighet? 
+                {
+                    Console.WriteLine("You were killed by the monster :(");
+                    Console.WriteLine("[Press enter to go back to menu]");
+                    Console.ReadKey();
+                    break;
+                }
+
+                Console.WriteLine($"{player.Name}: {player.HpCurrently}");
+                Console.WriteLine($"{monsterToFight.Name}: {monsterToFight.HP}");
+                Console.WriteLine("[Press enter to continue]");
+                Console.ReadKey();
+            } while (monsterToFight.HP > 0 && player.HpCurrently > 0);
+        }
+
+        private static bool IsPlayerAlive()
+        {
+            if (player.HpCurrently > 0)
+            { 
+                return true; 
+            }
+            else 
+            {
+                Console.WriteLine("Sorry mate, you´re dead. Try to find a healer that can bring you back from the dead. But it will cost you...");
+                Console.ReadKey();
+                return false;
+            }
+
         }
 
         private static Monster DecideLVLMonster(List<Monster>monsters)
@@ -146,7 +220,7 @@ namespace Labb3VG
         private static void CreateMonsters()   // Just because i want random kind of monsters, in different lvls i go through this loop. And the settings gives them random lvls and names. 
         {
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 15; i++)
             {
                 Dragon dragon = new Dragon();
                 fireMonsters.Add(dragon);

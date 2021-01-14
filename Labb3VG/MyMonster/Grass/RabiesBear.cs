@@ -13,13 +13,14 @@ namespace Labb3VG.MyMonster.Grass
             Name = bearNames[nr];
             Lvl = rnd.Next(1, 11);
             HP = 50 + (Lvl * 3);
-            Gold = 10 + (Lvl * 3);
-            AchieveExperience = 50 + (Lvl * 2);
+            DropGold = 10 + (Lvl * 3);
+            Experience = 50 + (Lvl * 2);
             Strength = Lvl;
             Race = "Rabies Bear";
             Sound = " he moans like \"Grooar\"... *drooling* *drooling*";
             SpecialAttack = "Bite";
             SpecialAttack2 = "Spitting Rabies";
+            Element = "grass";
 
         }
     }

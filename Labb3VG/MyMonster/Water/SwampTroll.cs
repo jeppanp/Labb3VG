@@ -15,14 +15,15 @@ namespace Labb3VG.MyMonster.Water
                 Name = trollNames[nr];
                 Lvl = rnd.Next(1, 11);
                 HP = 50 + (Lvl * 3);
-                Gold = 15 + (Lvl * 3);
-                AchieveExperience = 50 + (Lvl * 2);
+                DropGold = 15 + (Lvl * 3);
+                Experience = 50 + (Lvl * 2);
                 Strength = Lvl;
-                Race = "Troll";
+                Race = "Swamp Troll";
                 Sound = " He mumble for himself \"Hmmm, bugs\"";
                 SpecialAttack = "Fist Punch";
+                Element = "water";
 
-        
+
 
         }
     }

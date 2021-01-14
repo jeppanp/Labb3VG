@@ -10,11 +10,13 @@ namespace Labb3VG.MyMonster
         private string name;
         private int hP;
         private int strength;
-        private int gold;
-        private int achieveExperience;
+        private int dropGold;
+        private int experience;
         private int lvl;
         private string race;
         private string sound;
+        private string element;
+
         public Random rnd = new Random();
 
 
@@ -22,11 +24,12 @@ namespace Labb3VG.MyMonster
         public string Name { get => name; set => name = value; }
         public int HP { get => hP; set => hP = value; }
         public int Strength { get => strength; set => strength = value; }
-        public int Gold { get => gold; set => gold = value; }
-        public int AchieveExperience { get => achieveExperience; set => achieveExperience = value; }
+        public int DropGold { get => dropGold; set => dropGold = value; }
+        public int Experience { get => experience; set => experience = value; }
         public int Lvl { get => lvl; set => lvl = value; }
         public string Race { get => race; set => race = value; }
         public string Sound { get => sound; set => sound = value; }
+        public string Element { get => element; set => element = value; }
 
         virtual public int Attack()
         {

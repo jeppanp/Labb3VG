@@ -6,6 +6,7 @@ namespace Labb3VG.MyMonster.Fire
 {
     class FireMonster : Monster
     {
+
         public override int Attack()
         {
             int attack = 0;

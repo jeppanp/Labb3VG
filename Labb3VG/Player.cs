@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Channels;
+using Labb3VG.MyMonster;
 
 namespace Labb3VG
 {
@@ -17,22 +19,30 @@ namespace Labb3VG
         private double hpBar;
         private int toughness;
         private int strength;
-        private string weapon;
-        private bool weaponInbool;
         private bool amulett;
+        private bool fireWeapon;
+        private bool grassWeapon;
+        private bool waterWeapon;
+
+
         public Random rnd = new Random();
+       
+
 
         public Player()
         {
             lvl = 1;
             gold = 0;
-            HpBar = 100;
-            hpCurrently= HpBar;
+            HpBar = 300;
+            hpCurrently = HpBar;
             lvlBar = 100;
             experience = 0;
             Strength = lvl;
             Toughness = 0;
+           
         }
+
+
 
         public string Name { get => name; set => name = value; }
         public int Lvl { get => lvl; set => lvl = value; }
@@ -40,16 +50,36 @@ namespace Labb3VG
         public double HpCurrently { get => hpCurrently; set => hpCurrently = value; }
         public int Toughness { get => toughness; set => toughness = value; }
         public int Strength { get => strength; set => strength = value; }
-        public string Weapon { get => weapon; set => weapon = value; }
-        public bool WeaponInbool { get => weaponInbool; set => weaponInbool = value; }
-        public bool Amulett { get => amulett; set => amulett = value; }
+        public bool StrengtAmulet { get => amulett; set => amulett = value; }
         public double LvlBar { get => lvlBar; set => lvlBar = value; }
         public int Experience { get => experience; set => experience = value; }
         public double HpBar { get => hpBar; set => hpBar = value; }
+        public bool FireWeapon { get => fireWeapon; set => fireWeapon = value; }
+        public bool GrassWeapon { get => grassWeapon; set => grassWeapon = value; }
+        public bool WaterWeapon { get => waterWeapon; set => waterWeapon = value; }
 
-        public int Attack()                     
+        public int Attack(Monster monster, Player player)
         {
             int attack = 0;
+
+            if (monster.Element== "water" && player.grassWeapon || monster.Element == "fire" && player.waterWeapon || monster.Element == "grass" && fireWeapon) 
+            { 
+                attack = Strikes(8); 
+            }
+
+            else
+            { 
+                attack = Strikes(0);
+            }
+            
+            return attack;
+        }
+
+        private int Strikes(int weapon)
+        {
+
+            int attack = 0;
+
 
             int nr = rnd.Next(1, 22);                      // Låg risk att missa attacken, 5 procent. 
             if (nr != 1)
@@ -61,21 +91,23 @@ namespace Labb3VG
                 nr = 4;
             }
 
+
+
             switch (nr)
             {
                 case 1:
 
-                    attack = Strength;
+                    attack += Strength + weapon;
                     Console.WriteLine($"You hit the monster, dealing {attack} damage");
                     break;
 
                 case 2:
-                    attack = Strength + 2;
+                    attack += Strength + 2 + weapon;
                     Console.WriteLine($"You hit the monster, dealing {attack} damage");
                     break;
 
                 case 3:
-                    attack = Strength + 5;
+                    attack += Strength + 3 + weapon;
                     Console.WriteLine($"You hit the monster with Great strengt. dealing {attack} damage");
                     break;
 
@@ -88,32 +120,27 @@ namespace Labb3VG
             return attack;
         }
 
-        public string LvlUp()
+        public void LvlUp()
         {
-            if (Experience >= LvlBar)
-            {
+            
                 Lvl++;
                 Experience = Experience - (int)LvlBar;
-                LvlBar = Math.Round(LvlBar*1.25);   
-                HpBar =Math.Round(HpBar* 1.15);
+                LvlBar = Math.Round(LvlBar * 1.25);
+                HpBar = Math.Round(HpBar * 1.15);
                 Strength++;
-                
+
                 hpCurrently = HpBar;
 
-                return $"Congratulations! You leveled up! \nYou are now level {Lvl}, and you have {Experience} experience and {HpCurrently} hp and {gold} gold";
-            }
-            else
-            {
-                return "";
-            }
-            
+            Console.WriteLine($"Congratulations! You leveled up! \nYou are now level {Lvl}, and you have {Experience} experience and {HpCurrently} hp and {gold} gold"); 
+      
+
         }
 
         public override string ToString()
         {
             return $"***********\n* Name: {Name}\n* Level: {Lvl}\n* HP: {HpCurrently}/{HpBar}\n* Exp: {Experience}/{LvlBar}\n* Gold: {Gold}\n* Strength: {Strength}\n* Toughness: {Toughness}\n***********";
-        }
+        } // Lägg till om personen har en amulett eller svärd. 
     }
- 
+
 
 }

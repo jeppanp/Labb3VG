@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Labb3VG.MyMonster.Water
@@ -8,9 +9,11 @@ namespace Labb3VG.MyMonster.Water
     {
         private string specialAttack;
         private string normalAttack;
+        
 
         public string SpecialAttack { get => specialAttack; set => specialAttack = value; }
         public string NormalAttack { get => "Water Cannon" ; set => normalAttack =value; }
+
 
         public override int Attack()
         {
