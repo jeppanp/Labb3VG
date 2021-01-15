@@ -8,11 +8,10 @@ namespace Labb3VG.MyMonster.Water
     {
         public Crocodile()
         {
-         
-                List<string> crocNames = new List<string>() { "Crocks", "Allie", "Green Tail", "Lolong", "Steve Irwin", "Delta" };
-                int nr = rnd.Next(6);
-                Name = crocNames[nr];
-                Lvl = rnd.Next(1, 11);
+
+            List<string> crocNames = new List<string>() { "Crocks", "Allie", "Green Tail", "Lolong", "Steve Irwin", "Delta" };
+                Name = crocNames[RandomNames()];
+                Lvl = random.Next(1, 11);
                 HP = 50 + (Lvl * 3);
                 DropGold = 10 + (Lvl * 3);
                 Experience = 50 + (Lvl * 2);

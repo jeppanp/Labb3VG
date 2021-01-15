@@ -8,10 +8,9 @@ namespace Labb3VG.MyMonster.Grass
     {
         public Scarab()
         {
-            List<string> scarabNames = new List<string>() { "Insek", "Krypet", "Bäfis", "Tvestjärt", "Ekoxe", "millipede" };
-            int nr = rnd.Next(6);
-            Name = scarabNames[nr];
-            Lvl = rnd.Next(1, 11);
+            List<string> scarabNames = new List<string>() { "Insek", "Krypet", "Bäfis", "Tvestjärt", "Ekoxe", "millipede" };       
+            Name = scarabNames[RandomNames()];
+            Lvl = random.Next(1, 11);
             HP = 50 + (Lvl * 3);
             DropGold = 10 + (Lvl * 3);
             Experience = 50 + (Lvl * 2);

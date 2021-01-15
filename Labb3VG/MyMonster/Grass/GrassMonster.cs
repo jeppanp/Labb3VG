@@ -24,7 +24,7 @@ namespace Labb3VG.MyMonster.Grass
                 reduceDamage = -2;
             }
 
-            switch (rnd.Next(1, 4))
+            switch (random.Next(1, 4))
             {
 
 

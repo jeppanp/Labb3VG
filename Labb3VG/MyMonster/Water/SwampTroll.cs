@@ -10,10 +10,9 @@ namespace Labb3VG.MyMonster.Water
         public SwampTroll()
         {
       
-                List<string> trollNames = new List<string>() { "Goliat", "Ymer", "Rölli", "Melker", "Rumpnisse", "Smegael" };
-                int nr = rnd.Next(6);
-                Name = trollNames[nr];
-                Lvl = rnd.Next(1, 11);
+                List<string> trollNames = new List<string>() { "Goliat", "Ymer", "Rölli", "Melker", "Rumpnisse", "Smegael" };      
+                Name = trollNames[RandomNames()];
+                Lvl = random.Next(1, 11);
                 HP = 50 + (Lvl * 3);
                 DropGold = 15 + (Lvl * 3);
                 Experience = 50 + (Lvl * 2);

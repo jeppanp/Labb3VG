@@ -8,10 +8,9 @@ namespace Labb3VG.MyMonster.Grass
     {
         public Wasp()
         {
-            List<string> waspNames = new List<string>() { "Stingie", "Sssssixten", "Zed", "Sticky", "Beeritt", "Buzz" };
-            int nr = rnd.Next(6);
-            Name = waspNames[nr];
-            Lvl = rnd.Next(1, 11);
+            List<string> waspNames = new List<string>() { "Stingie", "Sssssixten", "Zed", "Sticky", "Beeritt", "Buzz" };  
+            Name = waspNames[RandomNames()];
+            Lvl = random.Next(1, 11);
             HP = 50 + (Lvl * 3);
             DropGold = 10 + (Lvl * 3);
             Experience = 50 + (Lvl * 2);

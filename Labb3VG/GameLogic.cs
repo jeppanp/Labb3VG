@@ -190,7 +190,7 @@ namespace Labb3VG
             }
             else if (player.Lvl >= 7)
             {
-                monsterToFight = monsters.Find(x => x.Lvl <= 10);
+                monsterToFight = monsters.Find(x => x.Lvl >= 6);
                 Console.WriteLine(monsterToFight.Greetings());
                 monsters.Remove(monsterToFight);
 

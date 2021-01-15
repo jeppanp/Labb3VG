@@ -25,10 +25,10 @@ namespace Labb3VG.MyMonster.Water
             }
             
 
-            int nr = rnd.Next(1, 11);
+            int nr = random.Next(1, 11);
             if (nr != 1)
             {
-                nr = rnd.Next(1, 3);
+                nr = random.Next(1, 3);
             }
             else
             {
@@ -41,12 +41,12 @@ namespace Labb3VG.MyMonster.Water
 
                 case 1:
                     attack = Strength + 1 + reduceDamage;
-                    Console.WriteLine($"The {Name} hits you with a {NormalAttack} , dealing {attack} damage.");
+                    Console.WriteLine($"{Name} hits you with a {NormalAttack} , dealing {attack} damage.");
                     break;
 
                 case 2:
                     attack = Strength + 2 + reduceDamage;
-                    Console.WriteLine($"The {Name} hits you with a {SpecialAttack}, dealing {attack} damage.");
+                    Console.WriteLine($"{Name} hits you with a {SpecialAttack}, dealing {attack} damage.");
                     break;
 
                 case 3:

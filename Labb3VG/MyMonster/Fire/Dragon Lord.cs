@@ -10,7 +10,7 @@ namespace Labb3VG.MyMonster.Fire
         public DragonLord ()
         {
             Name = "The Red Nightmare";
-            Lvl = rnd.Next(7, 11);
+            Lvl = random.Next(7, 11);
             HP = 90 + (Lvl * 3);
             DropGold = 80 + (Lvl * 3);
             Experience = 50 + (Lvl * 2);

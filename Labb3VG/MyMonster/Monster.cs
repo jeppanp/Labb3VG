@@ -17,7 +17,8 @@ namespace Labb3VG.MyMonster
         private string sound;
         private string element;
 
-        public Random rnd = new Random();
+        public Random random = new Random();
+
 
 
 
@@ -31,30 +32,15 @@ namespace Labb3VG.MyMonster
         public string Sound { get => sound; set => sound = value; }
         public string Element { get => element; set => element = value; }
 
-        virtual public int Attack(Player player)
+
+        protected int RandomNames()
         {
-
-            int attack=0;
-           
-            switch (rnd.Next(1, 4))
-            {
-                case 1:
-                    attack = Strength;
-                break;
-
-                case 2:
-                    attack = Strength + 1;
-                break;
-
-                case 3:
-                    attack = Strength + 2;
-                break;
-            }
-
-            return attack;
+            int randomNames = random.Next(6);
+            return randomNames;
         }
-
-
+        virtual public int Attack(Player player)
+        { return 0; }
+        
 
         virtual public string Greetings()
         {
